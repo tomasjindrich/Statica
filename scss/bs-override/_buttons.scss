@@ -1,0 +1,13 @@
+// rebuild updated buttons
+@each $color, $value in $button-colors-override {
+  .btn-#{$color} {
+    @include button-variant($value, $value);
+  }
+}
+
+// rebuild updated outline buttons
+@each $color, $value in $button-colors-override {
+  .btn-outline-#{$color} {
+    @include button-outline-variant($value);
+  }
+}

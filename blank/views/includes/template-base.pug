@@ -1,0 +1,36 @@
+extends ../../../modules/views/template-master
+
+block append settings-custom
+
+block append title
+
+block append styles
+  link(rel="stylesheet", href= getAttachedFile("css/theme.min.css",'?v1'))
+
+
+//- bottom
+block append scripts
+  script(src= getAttachedFile("js/scripts.min.js"))
+
+
+block append fonts
+  //- link(href="https://fonts.googleapis.com/css?family=Merriweather:400,400i,700&display=swap&subset=latin-ext", rel="stylesheet")
+  //- link(href="https://fonts.googleapis.com/css?family=Lora:700&display=swap&subset=latin-ext", rel="stylesheet")
+
+
+block append header 
+  include block/header
+
+
+block append content 
+  main.main
+
+
+block append footer
+  include block/footer
+
+
+
+
+  
+

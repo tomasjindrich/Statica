@@ -1,0 +1,32 @@
+
+// regenerate theme text color classes
+@each $color, $value in $theme-colors-override {
+  .text-#{$color} {
+    color: $value !important
+  }
+}
+// regenerate theme background color classes
+@each $color, $value in $theme-colors-override {
+  .bg-#{$color} {
+    background-color: $value !important
+  }
+}
+// regenerate theme border color classes
+@each $color, $value in $theme-colors-override {
+  .border-#{$color} {
+    border-color: $value !important
+  }
+}
+// regenerate theme link color classes
+@each $color, $value in $theme-colors-override {
+  .link-#{$color} {
+    color: $value;
+
+    @if $link-shade-percentage != 0 {
+      &:hover,
+      &:focus {
+        color: if(color-contrast($value) == $color-contrast-light, shade-color($value, $link-shade-percentage), tint-color($value, $link-shade-percentage));
+      }
+    }
+  }
+}
