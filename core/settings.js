@@ -1,6 +1,3 @@
-const appRoot = require('app-root-path');
-const settings_custom = require(appRoot + '/settings.js') // project custom settings
-
 var settings_default = {
   
   path: {
@@ -109,14 +106,19 @@ const merge = (target, source) => {
   for (const key of Object.keys(source)) {
     if (source[key] instanceof Object) Object.assign(source[key], merge(target[key], source[key]))
   }
-
   // Join `target` and modified `source`
   Object.assign(target || {}, source)
   return target
 }
 
 // Merged Settings
-var settings = merge(settings_default, settings_custom);
+// var settings = merge(settings_default, settings_custom);
+
+function getSettings (settings_custom = null) {
+  return settings_custom ? merge(settings_default, settings_custom) : settings_default;
+}
+
+var settings = getSettings();
 
 // Value from settings
 function getVal(key, object) {
@@ -145,7 +147,9 @@ function page (key, object = 'page') {
   return (key && object) ? getVal(key, object) : null
 }
 
+
 module.exports = {
+  getSettings,
   settings,
   path,
   build,

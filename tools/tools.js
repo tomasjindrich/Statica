@@ -1,14 +1,8 @@
-const appRoot = require('app-root-path');
-var { settings, path, conf, site, page } = require(appRoot + '/modules/core/settings.js');
+var { settings, path, conf, site, page } = require('../core/settings.js');
 
 // Test
 function test () {
   return 'Hello traveler! Answer is 42.'
-}
-
-// Project Dir
-function root (root = appRoot) {
-  return root ? root : null;
 }
 
 // Framework Path
@@ -73,7 +67,6 @@ function getAttachedFile(base_input, version) {
 
 module.exports = {
   test,
-  root,
   isDev,
   isFunc,
   getPermalink,
