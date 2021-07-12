@@ -3,3 +3,5 @@
 /dist
 /tmp
 /package-lock.json
+/*.code-workspace
+.gitignore
