@@ -65,12 +65,69 @@ function getAttachedFile(base_input, version) {
 };
 
 
+
+
+formatPrice = function(val, n, x, s, c) {
+  var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+      val = val.toFixed(Math.max(0, ~~n));
+
+  return (c ? val.replace('.', c) : val).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+};
+
+
+function getRandom( min = 100, max = 2000) { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+
+
+
+class fakeData  {
+
+  // priceRaw: hodnota včetně dph, např 2340
+  constructor(priceRaw = this.random()) {
+    this.priceRaw = priceRaw;
+  }
+
+  /**
+   * format(val, n, x, s, c)
+   * 
+   * @param integer n: length of decimal
+   * @param integer x: length of whole part
+   * @param mixed   s: sections delimiter
+   * @param mixed   c: decimal delimiter
+   */
+
+  format = function(val, n = 2, x = 3, s = ' ', c = ',') {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+        val = val.toFixed(Math.max(0, ~~n));
+    return (c ? val.replace('.', c) : val).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+  };
+  
+
+  random( min = 100, max = 2000 ) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  round(num ,round= 100) {
+    return Math.round(num / round) * round
+  }
+
+  // Formated price 2 560,00
+  price(decimal = 0) {
+    return this.format(this.round(this.priceRaw), decimal)
+  }
+}
+
+
+
 module.exports = {
   test,
   isDev,
   isFunc,
   getPermalink,
-  getAttachedFile
+  getAttachedFile,
+  fakeData,
 }
 
 
